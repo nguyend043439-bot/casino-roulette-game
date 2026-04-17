@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Casino Roulette</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Top Bar -->
+    <div id="top-bar">
+      <div id="reward-btn" class="top-btn reward-btn">
+        <span>🎁 THƯỞNG</span>
+        <span id="fortune-timer" class="timer-text"></span>
+      </div>
+      <div id="title-text">ROULETTE</div>
+      <div id="top-right-btns">
+        <button id="btn-music" class="icon-btn" title="Âm thanh">🔊</button>
+        <button id="btn-save" class="icon-btn" title="Lưu">💾</button>
+      </div>
+    </div>
+
+    <!-- Wheel Area -->
+    <div id="wheel-area">
+      <canvas id="wheel-canvas"></canvas>
+      <div id="win-display" class="hidden"></div>
+    </div>
+
+    <!-- Last Numbers -->
+    <div id="last-bar">
+      <span class="last-bar-label">Số cuối:</span>
+      <div id="last-nums"></div>
+    </div>
+
+    <!-- Main Content: chip panel + table -->
+    <div id="main-content">
+
+      <!-- Left chip panel -->
+      <div id="chip-panel">
+        <div id="chip-stack-display"></div>
+        <div id="chips-list"></div>
+      </div>
+
+      <!-- Betting Table -->
+      <div id="table-wrap">
+        <div id="roulette-table">
+
+          <!-- Zero -->
+          <div class="table-zero bet-zone" data-bet="straight_0">0</div>
+
+          <!-- Numbers 1-36 in rows of 3 -->
+          <div id="number-grid"></div>
+
+          <!-- Column 2:1 buttons -->
+          <div id="col-buttons">
+            <div class="col-btn bet-zone" data-bet="col_A">2:1</div>
+            <div class="col-btn bet-zone" data-bet="col_B">2:1</div>
+            <div class="col-btn bet-zone" data-bet="col_C">2:1</div>
+          </div>
+
+          <!-- Outside bets LEFT column -->
+          <div id="outside-bets">
+            <div class="out-group">
+              <div class="out-btn bet-zone" data-bet="low">1-18</div>
+              <div class="out-btn bet-zone" data-bet="even">EVEN</div>
+            </div>
+            <div class="out-btn-dozen bet-zone" data-bet="dozen_1">1st 12</div>
+            <div class="out-diamond">♦</div>
+            <div class="out-btn-dozen bet-zone" data-bet="dozen_2">2nd 12</div>
+            <div class="out-diamond">♦</div>
+            <div class="out-btn-dozen bet-zone" data-bet="dozen_3">3rd 12</div>
+            <div class="out-group">
+              <div class="out-btn bet-zone" data-bet="odd">ODD</div>
+              <div class="out-btn bet-zone" data-bet="high">19-36</div>
+            </div>
+          </div>
+
+        </div><!-- end #roulette-table -->
+
+        <!-- Chip overlays rendered here -->
+        <div id="chip-overlays"></div>
+      </div><!-- end #table-wrap -->
+
+    </div><!-- end #main-content -->
+
+    <!-- Bottom HUD + Controls -->
+    <div id="bottom-bar">
+      <div id="money-area">
+        <div id="money-row">
+          <span class="chip-icon">🟢</span>
+          <span id="money-val">5,000</span>
+        </div>
+        <div id="bet-row">
+          <span class="bet-label">BET</span>
+          <span id="bet-val">0</span>
+        </div>
+      </div>
+      <div id="action-btns">
+        <button class="action-btn" id="btn-reset" title="Xóa chip">🗑️</button>
+        <button class="action-btn" id="btn-undo" title="Hoàn tác">↩️</button>
+        <button class="action-btn" id="btn-restore" title="Khôi phục">🔄</button>
+        <button class="action-btn" id="btn-load" title="Tải game">📂</button>
+      </div>
+      <button id="btn-play">▶</button>
+    </div>
+
+  </div><!-- end #app -->
+
+  <!-- Fortune Modal -->
+  <div id="fortune-modal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-title">🎁 Phần thưởng hàng ngày</div>
+      <canvas id="fortune-canvas" width="260" height="260"></canvas>
+      <div id="fortune-result"></div>
+      <button id="fortune-spin-btn" class="play-btn">QUAY</button>
+      <button id="fortune-close-btn" class="cancel-btn">Đóng</button>
+    </div>
+  </div>
+
+  <!-- Result Modal -->
+  <div id="result-modal" class="modal hidden">
+    <div class="modal-box result-box">
+      <div id="res-title"></div>
+      <div id="res-amount"></div>
+      <div id="res-num"></div>
+      <button id="res-close-btn" class="play-btn" style="margin-top:12px">TIẾP TỤC</button>
+    </div>
+  </div>
+
+  <!-- Notification toast -->
+  <div id="toast" class="hidden"></div>
+
+  <!-- Spinning blocker -->
+  <div id="spinning-overlay"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
