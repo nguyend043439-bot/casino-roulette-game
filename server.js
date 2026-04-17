@@ -57,12 +57,12 @@ function handleRequest(req, res) {
 
 // Listen on port 5000 (Replit IDE preview)
 const server1 = http.createServer(handleRequest);
-server1.listen(5000, '0.0.0.0', () => {
-  console.log('Casino Roulette server running on port 5000');
+server1.listen(8080, '0.0.0.0', () => {
+  console.log('Casino Roulette server running on port 8080');
 });
 
-// Listen on port 3000 (External access: externalPort 80 → localPort 3000)
+// Listen on port 8080 (External access: externalPort 80 → localPort 8080)
 const server2 = http.createServer(handleRequest);
-server2.listen(3000, '0.0.0.0', () => {
-  console.log('Casino Roulette server also running on port 3000');
+server2.listen(8080, '0.0.0.0', () => {
+  console.log('Casino Roulette server also running on port 8080');
 });
